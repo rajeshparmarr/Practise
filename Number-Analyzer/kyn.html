@@ -3,10 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Know your Number?</title>
+    <title>Know your Number</title>
     <link rel="stylesheet" href="kyn.css">
 </head>
 <body>
-<scrip src="kyn.js"></scrip>
+    <header class="header">
+        <h1 class="logo"> Know Your Number</h1>
+        <div class="input-box">
+            <input id="numInput" type="number" placeholder="Enter a number..." />
+            <button onclick="analyzeNumber()">Analyze</button>
+        </div>
+    </header>
+    
+    <div class="container">
+    
+        <div class="card">
+            <h2>Even / Odd</h2>
+            <p id="evenOdd">--</p>
+        </div>
+    
+        <div class="card">
+            <h2>Prime Check</h2>
+            <p id="primeCheck">--</p>
+        </div>
+    
+        <div class="card">
+            <h2>Reverse Digits</h2>
+            <p id="reverseNum">--</p>
+        </div>
+    
+        <div class="card big-card">
+            <h2>Multiplication Table</h2>
+            <ul id="tableList"></ul>
+        </div>
+    
+    </div>
+
+<script src="kyn.js"></script>
 </body>
 </html>
