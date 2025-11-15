@@ -17,17 +17,14 @@ function isEven(num) {
   if (num % 2 == 0) {
     isEvenf = true;
     return isEvenf;
-    console.log(num, "is a even number", isEven);
   } else {
     isEvenf = false;
     return isEvenf;
-    console.log(num, "is an odd number", isEven);
   }
 }
 
 function multipleTable(num) {
   for (let i = 1; i <= 10; i++) {
-    console.log(num, "X", i, "=", num * i);
     return num, "X", i, "=", num * i;
   }
 }
@@ -49,18 +46,13 @@ function isPrime(num) {
     for (let i = 2; i < num; i++) {
       if (num % i == 0) {
         isPrimef = false;
-        message = "is not a prime";
+        message = `${num} is not a Prime number`;
         break;
       }
       isPrimef = true;
       message = "is a prime";
     }
     return [isPrimef, message];
-  }
-  if (isPrimef) {
-    console.log(num, "is a prime number");
-  } else {
-    console.log(num, "is not a prime number");
   }
 }
 
@@ -77,23 +69,50 @@ function reverseDigit(num) {
     }
     
 }
-console.log(reverseDigit(num))
+
 
 function factorial(num) {
   if (num < 0) {
-    console.log("Undefined");
+      console.log("Undefined");
+      return ("undefined")
   } else if (num == 0 || num == 1) {
-    console.log("factorial of 0 or 1 is", 1);
+      console.log("factorial of 0 or 1 is", 1);
+      return ("factorial of 0 or 1 is", 1)
   } else {
-    fact = 1;
-    for (let i = 1; i <= num; i++) {
+    let fact = BigInt(1)
+    for (let i = BigInt(2); i <= BigInt(num); i++) {
       fact *= i;
     }
-    console.log(fact);
+      console.log(fact);
+      return fact
   }
 }
 
-function analyzeNumber() {
+
+// {
+//   "facts_about_100": [
+//     "**Perfect Square & Sum of Cubes:** 100 is a perfect square, as 10 x 10 (10²), and also uniquely the sum of the first four cubes: 1³ + 2³ + 3³ + 4³ = 1 + 8 + 27 + 64 = 100.",
+//     "**Celsius Scale:** On the Celsius temperature scale, 100 degrees is the boiling point of water at standard atmospheric pressure, making it a fundamental reference point.",
+//     "**Century & Centenarian:** A 'century' refers to a period of 100 years, and a person who reaches the age of 100 or more is known as a 'centenarian'.",
+//     "**Percentage Base:** The term 'percent' literally means 'per hundred' (from the Latin 'per centum'), establishing 100 as the foundational number for expressing proportions and rates.",
+//     "**Olympic Sprint:** The 100-meter dash is a premier event in track and field, often considered the ultimate test of human speed and a highlight of the Olympic Games."
+//   ]
+// }
+async function geminiAPI(num) {
+    const response = await fetch("http://localhost:1001/api/gemini", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({number:num}),
+    })
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json()
+}
+
+async function analyzeNumber() {
   let num = parseInt(document.getElementById("numInput").value);
 
   if (isNaN(num)) {
@@ -130,11 +149,36 @@ function analyzeNumber() {
 
 
   // multiplication Table
-  let tableList = document.getElementById("tableList");
-    tableList.innerHtml = "";
+    let tableList = document.getElementById("tableList");
+    tableList.innerText = "";
     for (let i = 1; i <= 10; i++){
         let li = document.createElement("li");
+        li.style.color = 'green'
         li.innerText = `${num} X ${i} = ${num * i};`
         tableList.appendChild(li)
     }
+
+    // factorial calculation
+    let result3 = factorial(num);
+    let factorialEle = document.getElementById("factorial")
+    factorialEle.style.color = 'green'
+    factorialEle.innerText = result3.toString();
+
+ 
+    // gemini API
+    let aiResult = await geminiAPI(num)
+    let geminiEle = document.getElementById("geminiAPI");
+
+    geminiEle.innerHTML = ""
+
+    const ul = document.createElement("ul")
+
+    aiResult.points.forEach(point => {
+        const li = document.createElement("li")
+        li.textContent = point
+        ul.appendChild(li)
+    })
+    geminiEle.appendChild(ul);
+   
 }
+

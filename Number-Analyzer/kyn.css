@@ -89,3 +89,12 @@ body {
     margin-bottom: 5px;
     font-size: 1rem;
 }
+
+#factorial{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    /* overflow: scroll; */
+    overflow-y: scroll;
+}
