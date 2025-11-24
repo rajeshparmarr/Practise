@@ -6,6 +6,7 @@ Check: even/odd
 Multiply table
 Prime or not
 Reverse digits
+Add a Gemini ai api which tell 5 intereseting facts of Number.
 Goal: No tutorial, no GPT.
 Just your own thinking.
 */
@@ -88,16 +89,6 @@ function factorial(num) {
   }
 }
 
-
-// {
-//   "facts_about_100": [
-//     "**Perfect Square & Sum of Cubes:** 100 is a perfect square, as 10 x 10 (10²), and also uniquely the sum of the first four cubes: 1³ + 2³ + 3³ + 4³ = 1 + 8 + 27 + 64 = 100.",
-//     "**Celsius Scale:** On the Celsius temperature scale, 100 degrees is the boiling point of water at standard atmospheric pressure, making it a fundamental reference point.",
-//     "**Century & Centenarian:** A 'century' refers to a period of 100 years, and a person who reaches the age of 100 or more is known as a 'centenarian'.",
-//     "**Percentage Base:** The term 'percent' literally means 'per hundred' (from the Latin 'per centum'), establishing 100 as the foundational number for expressing proportions and rates.",
-//     "**Olympic Sprint:** The 100-meter dash is a premier event in track and field, often considered the ultimate test of human speed and a highlight of the Olympic Games."
-//   ]
-// }
 async function geminiAPI(num) {
     const response = await fetch("http://localhost:1001/api/gemini", {
       method: "POST",
