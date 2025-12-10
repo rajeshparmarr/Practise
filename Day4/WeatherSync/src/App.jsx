@@ -7,7 +7,7 @@ const App = () => {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
 
-  const API_KEY = "c17feacb20ad53fa39c0266f622e03c4";// Replace with your OpenWeatherMap API key
+  const API_KEY = import.meta.env.REACT_APP_API_KEY; 
 
   // Debounce: only fetch after user stops typing for 1 second
   useEffect(() => {
